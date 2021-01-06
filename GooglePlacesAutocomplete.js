@@ -531,7 +531,8 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
 
   const _onChangeText = (text) => {
     setStateText(text);
-    debounceData(text);
+    if (props.enableAutoComplete)
+      debounceData(text);
   };
 
   const _handleChangeText = (text) => {
@@ -667,7 +668,7 @@ export const GooglePlacesAutocomplete = forwardRef((props, ref) => {
     inputRef?.current?.blur();
   };
 
-  const _onFocus = () => setListViewDisplayed(true);
+  const _onFocus = () => props.enableAutoComplete && setListViewDisplayed(true);
 
   const _renderPoweredLogo = () => {
     if (!_shouldShowPoweredLogo()) {
@@ -870,6 +871,7 @@ GooglePlacesAutocomplete.propTypes = {
   textInputHide: PropTypes.bool,
   textInputProps: PropTypes.object,
   timeout: PropTypes.number,
+  enableAutoComplete: PropTypes.bool,
 };
 
 GooglePlacesAutocomplete.defaultProps = {
@@ -912,6 +914,7 @@ GooglePlacesAutocomplete.defaultProps = {
   textInputHide: false,
   textInputProps: {},
   timeout: 20000,
+  enableAutoComplete: true,
 };
 
 export default { GooglePlacesAutocomplete };
