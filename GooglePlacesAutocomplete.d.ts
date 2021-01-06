@@ -426,6 +426,8 @@ interface GooglePlacesAutocompleteProps {
 export type GooglePlacesAutocompleteRef = {
   setAddressText(address: string): void;
   getAddressText(): string;
+  getCurrentDataSource(): any;
+  triggerOnPress(rowData: GooglePlaceData): void;
 } & TextInput;
 
 export const GooglePlacesAutocomplete: React.ForwardRefExoticComponent<
